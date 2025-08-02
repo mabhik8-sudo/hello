@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Control Panel</title>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js"></script>
+</head>
+<body>
+  <h2>ESP32 LED Controller</h2>
+  <button onclick="sendCommand('led_on', 1)">Turn ON LED</button>
+  <button onclick="sendCommand('led_off', 0)">Turn OFF LED</button>
+
+  <script>
+    // Your Firebase config
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAiQ9mWuJUIFbjQ4q5xh08q76eJX09Lbt4",
+  authDomain: "abhiksaswata-26655.firebaseapp.com",
+  projectId: "abhiksaswata-26655",
+  storageBucket: "abhiksaswata-26655.firebasestorage.app",
+  messagingSenderId: "864943802607",
+  appId: "1:864943802607:web:2ece31528217ce86e5331a",
+  measurementId: "G-XQG69WNKCE"
+};
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function sendCommand(action, value) {
+      db.ref("commands").set({
+        action: action,
+        value: value
+      }).then(() => {
+        alert("Command sent: " + action);
+      }).catch((error) => {
+        alert("Error: " + error);
+      });
+    }
+  </script>
+</body>
+</html>

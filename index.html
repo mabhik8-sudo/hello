@@ -26,7 +26,7 @@
     const db = firebase.database();
 
     function sendCommand(action, value) {
-      db.ref("commands").set({
+      db.ref("command").set({
         action: action,
         value: value
       }).then(() => {
@@ -38,5 +38,6 @@
   </script>
 </body>
 </html>
+
 
 
